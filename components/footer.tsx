@@ -133,6 +133,7 @@ export default function Footer() {
                 mulindwacharityfoundation@gmail.com
               </p>
               <p className="text-sm text-white/80">+256 757 437167</p>
+              <p className="text-sm text-white/80">+256 783 292657</p>
             </div>
           </div>
         </div>

@@ -68,8 +68,8 @@ export default function ContactPage() {
                   </div>
                   <p className="text-sm text-gray-500">
                     +256 757 437167
-                    {/* <br />
-                    +256 800 000000 */}
+                    <br />
+                    +256 783 292657
                   </p>
                 </div>
                 <div className="flex flex-col space-y-3 rounded-lg border p-4 shadow-sm">
