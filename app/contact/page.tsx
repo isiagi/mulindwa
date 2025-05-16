@@ -1,8 +1,85 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Image from "next/image";
+import emailjs from "@emailjs/browser";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState({
+    submitted: false,
+    submitting: false,
+    info: { error: false, msg: null },
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus({
+      submitted: false,
+      submitting: true,
+      info: { error: false, msg: null },
+    });
+
+    // Replace these with your actual EmailJS service credentials
+    const serviceId = "service_l71p6vh";
+    const templateId = "template_g58pjip";
+    const publicKey = "fPDV0-QTVLUt_jYp8";
+
+    const templateParams = {
+      from_name: `${formData.firstName} ${formData.lastName}`,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        setStatus({
+          submitted: true,
+          submitting: false,
+          info: { error: false, msg: "Message sent successfully!" },
+        });
+        // Reset form fields after successful submission
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      })
+      .catch((error) => {
+        console.log("FAILED...", error);
+        setStatus({
+          submitted: false,
+          submitting: false,
+          info: {
+            error: true,
+            msg: "Something went wrong. Please try again later.",
+          },
+        });
+      });
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -79,8 +156,6 @@ export default function ContactPage() {
                   </div>
                   <p className="text-sm text-gray-500">
                     mulindwacharityfoundation@gmail.com
-                    {/* <br />
-                    donations@mulindwacharity.org */}
                   </p>
                 </div>
                 <div className="flex flex-col space-y-3 rounded-lg border p-4 shadow-sm">
@@ -114,32 +189,38 @@ export default function ContactPage() {
               <h2 className="mb-6 text-2xl font-bold text-[#8c3420]">
                 Send Us a Message
               </h2>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="firstName"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                       First Name
                     </label>
                     <input
-                      id="first-name"
+                      id="firstName"
                       className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="John"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="space-y-2">
                     <label
-                      htmlFor="last-name"
+                      htmlFor="lastName"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                       Last Name
                     </label>
                     <input
-                      id="last-name"
+                      id="lastName"
                       className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Doe"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                 </div>
@@ -155,6 +236,9 @@ export default function ContactPage() {
                     type="email"
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="johndoe@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="space-y-2">
@@ -168,6 +252,9 @@ export default function ContactPage() {
                     id="subject"
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="How can we help you?"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="space-y-2">
@@ -181,10 +268,30 @@ export default function ContactPage() {
                     id="message"
                     className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Your message here..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                   ></textarea>
                 </div>
-                <Button className="w-full bg-[#8c3420] hover:bg-[#6a2718] text-white">
-                  Send Message
+
+                {status.info.error && (
+                  <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                    Error: {status.info.msg}
+                  </div>
+                )}
+
+                {status.submitted && (
+                  <div className="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
+                    {status.info.msg}
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  className="w-full bg-[#8c3420] hover:bg-[#6a2718] text-white"
+                  disabled={status.submitting}
+                >
+                  {status.submitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
