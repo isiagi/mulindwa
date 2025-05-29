@@ -1,42 +1,45 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useCallback } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import AnimateOnScroll from "@/components/animate-on-scroll"
+import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import AnimateOnScroll from "@/components/animate-on-scroll";
 
 interface SlideProps {
-  image: string
-  title: string
-  description: string
+  image: string;
+  title: string;
+  description: string;
 }
 
 interface HeroSliderProps {
-  slides: SlideProps[]
-  autoPlayInterval?: number
+  slides: SlideProps[];
+  autoPlayInterval?: number;
 }
 
-export default function HeroSlider({ slides, autoPlayInterval = 5000 }: HeroSliderProps) {
-  const [currentSlide, setCurrentSlide] = useState(0)
+export default function HeroSlider({
+  slides,
+  autoPlayInterval = 5000,
+}: HeroSliderProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))
-  }, [slides.length])
+    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  }, [slides.length]);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))
-  }, [slides.length])
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  }, [slides.length]);
 
   // Auto play functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide()
-    }, autoPlayInterval)
+      nextSlide();
+    }, autoPlayInterval);
 
-    return () => clearInterval(interval)
-  }, [nextSlide, autoPlayInterval])
+    return () => clearInterval(interval);
+  }, [nextSlide, autoPlayInterval]);
 
   return (
     <section className="relative w-full py-12 md:py-24 lg:py-32 overflow-hidden">
@@ -71,14 +74,21 @@ export default function HeroSlider({ slides, autoPlayInterval = 5000 }: HeroSlid
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
                   {slides[currentSlide].title}
                 </h1>
-                <p className="max-w-[600px] text-white md:text-xl">{slides[currentSlide].description}</p>
+                <p className="max-w-[600px] text-white md:text-xl">
+                  {slides[currentSlide].description}
+                </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link href="/get-involved">
-                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">Donate Now</Button>
+                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">
+                    Donate Now
+                  </Button>
                 </Link>
                 <Link href="/about">
-                  <Button variant="outline" className="border-white text-white hover:bg-white/20">
+                  <Button
+                    variant="outline"
+                    className="border-white bg-transparent text-white hover:bg-white/20 hover:text-white"
+                  >
                     Learn More
                   </Button>
                 </Link>
@@ -94,7 +104,9 @@ export default function HeroSlider({ slides, autoPlayInterval = 5000 }: HeroSlid
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-2 w-2 rounded-full transition-all ${index === currentSlide ? "bg-white w-4" : "bg-white/50"}`}
+            className={`h-2 w-2 rounded-full transition-all ${
+              index === currentSlide ? "bg-white w-4" : "bg-white/50"
+            }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
@@ -116,5 +128,5 @@ export default function HeroSlider({ slides, autoPlayInterval = 5000 }: HeroSlid
         <ChevronRight className="h-6 w-6" />
       </button>
     </section>
-  )
+  );
 }
