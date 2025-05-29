@@ -135,7 +135,7 @@ export default function ContactPage() {
                   <p className="text-sm text-gray-500">
                     Kiboga District, Uganda
                     <br />
-                    P.O. Box 12345
+                    P.O. Box 570095
                   </p>
                 </div>
                 <div className="flex flex-col space-y-3 rounded-lg border p-4 shadow-sm">
