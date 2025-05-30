@@ -472,7 +472,7 @@ export default function GetInvolvedPage() {
                 <Link href="/contact">
                   <Button
                     variant="outline"
-                    className="border-white text-white hover:bg-white/10"
+                    className="border-white bg-transparent text-white hover:bg-white/10"
                   >
                     Contact Us
                   </Button>

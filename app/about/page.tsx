@@ -1,9 +1,9 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Heart, Users, Calendar, Award } from "lucide-react"
-import { imagePaths } from "@/app/utils/image-paths"
-import AnimateOnScroll from "@/components/animate-on-scroll"
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Heart, Users, Calendar, Award } from "lucide-react";
+import { imagePaths } from "@/app/utils/image-paths";
+import AnimateOnScroll from "@/components/animate-on-scroll";
 
 export default function AboutPage() {
   return (
@@ -30,7 +30,8 @@ export default function AboutPage() {
                   About Mulindwa Charity Foundation
                 </h1>
                 <p className="mx-auto max-w-[700px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Learn about our journey, mission, and the impact we're making in Uganda.
+                  Learn about our journey, mission, and the impact we're making
+                  in Uganda.
                 </p>
               </div>
             </div>
@@ -55,24 +56,31 @@ export default function AboutPage() {
             </AnimateOnScroll>
             <AnimateOnScroll variant="fade-left" duration={700} delay={200}>
               <div className="flex flex-col justify-center space-y-4">
-                <div className="inline-block rounded-lg bg-[#f8f4e3] px-3 py-1 text-sm text-[#8c3420]">Our Story</div>
+                <div className="inline-block rounded-lg bg-[#f8f4e3] px-3 py-1 text-sm text-[#8c3420]">
+                  Our Story
+                </div>
                 <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">
                   From Humble Beginnings
                 </h2>
                 <p className="text-gray-700 md:text-lg">
-                  In its early years, Mulindwa Charity Foundation focused primarily on providing school fees, scholastic
-                  materials, and basic healthcare support to orphaned and vulnerable children in Kiboga district,
-                  Uganda.
+                  In its early years, Mulindwa Charity Foundation focused
+                  primarily on providing school fees, scholastic materials, and
+                  basic healthcare support to orphaned and vulnerable children
+                  in Kiboga district, Uganda.
                 </p>
                 <p className="text-gray-700 md:text-lg">
-                  As the organization matured, it expanded its programs to include vocational and life skills training
-                  for youth and women, health promotion through mobile medical camps, Water, Sanitation, and Hygiene
-                  (WASH) initiatives, and psychosocial support services.
+                  As the organization matured, it expanded its programs to
+                  include vocational and life skills training for youth and
+                  women, health promotion through mobile medical camps, Water,
+                  Sanitation, and Hygiene (WASH) initiatives, and psychosocial
+                  support services.
                 </p>
                 <p className="text-gray-700 md:text-lg">
-                  Today, Mulindwa Charity Foundation Uganda Limited operates across multiple districts, impacting the
-                  lives of thousands. The Foundation continues to work hand-in-hand with communities, local leaders, and
-                  national partners to build a stronger, more resilient Uganda where no one is left behind.
+                  Today, Mulindwa Charity Foundation Uganda Limited operates
+                  across multiple districts, impacting the lives of thousands.
+                  The Foundation continues to work hand-in-hand with
+                  communities, local leaders, and national partners to build a
+                  stronger, more resilient Uganda where no one is left behind.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -103,7 +111,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold text-[#8c3420]">Compassion</h3>
                 <p className="text-center text-gray-500">
-                  We approach our work with empathy and a genuine concern for the well-being of those we serve.
+                  We approach our work with empathy and a genuine concern for
+                  the well-being of those we serve.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -114,7 +123,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold text-[#8c3420]">Community</h3>
                 <p className="text-center text-gray-500">
-                  We believe in the power of community-led development and collaborative partnerships.
+                  We believe in the power of community-led development and
+                  collaborative partnerships.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -125,7 +135,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold text-[#8c3420]">Excellence</h3>
                 <p className="text-center text-gray-500">
-                  We strive for the highest standards in all our programs and services.
+                  We strive for the highest standards in all our programs and
+                  services.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -134,9 +145,12 @@ export default function AboutPage() {
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#8c3420]">
                   <Calendar className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#8c3420]">Sustainability</h3>
+                <h3 className="text-xl font-bold text-[#8c3420]">
+                  Sustainability
+                </h3>
                 <p className="text-center text-gray-500">
-                  We focus on long-term solutions that empower communities to thrive independently.
+                  We focus on long-term solutions that empower communities to
+                  thrive independently.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -150,9 +164,12 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fade-up" duration={700}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#8c3420]">Our Team</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#8c3420]">
+                  Our Team
+                </h2>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Meet the dedicated individuals behind Mulindwa Charity Foundation.
+                  Meet the dedicated individuals behind Mulindwa Charity
+                  Foundation.
                 </p>
               </div>
             </div>
@@ -170,8 +187,12 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-[#8c3420]">John Mulindwa</h3>
-                  <p className="text-sm text-gray-500">Founder & Executive Director</p>
+                  <h3 className="text-xl font-bold text-[#8c3420]">
+                    John Mulindwa
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    Founder & Executive Director
+                  </p>
                 </div>
               </div>
             </AnimateOnScroll>
@@ -187,7 +208,9 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-[#8c3420]">Sarah Nakato</h3>
+                  <h3 className="text-xl font-bold text-[#8c3420]">
+                    Sarah Nakato
+                  </h3>
                   <p className="text-sm text-gray-500">Programs Director</p>
                 </div>
               </div>
@@ -204,8 +227,12 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-[#8c3420]">David Mukasa</h3>
-                  <p className="text-sm text-gray-500">Community Outreach Coordinator</p>
+                  <h3 className="text-xl font-bold text-[#8c3420]">
+                    David Mukasa
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    Community Outreach Coordinator
+                  </p>
                 </div>
               </div>
             </AnimateOnScroll>
@@ -219,17 +246,25 @@ export default function AboutPage() {
           <AnimateOnScroll variant="fade-up" duration={700}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Join Our Mission</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Join Our Mission
+                </h2>
                 <p className="mx-auto max-w-[700px] text-white/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Together, we can make a difference in the lives of vulnerable individuals in Uganda.
+                  Together, we can make a difference in the lives of vulnerable
+                  individuals in Uganda.
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link href="/get-involved">
-                  <Button className="bg-white text-[#8c3420] hover:bg-gray-100">Donate Now</Button>
+                  <Button className="bg-white text-[#8c3420] hover:bg-gray-100">
+                    Donate Now
+                  </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Button
+                    variant="outline"
+                    className="border-white text-white bg-transparent hover:bg-white/10"
+                  >
                     Contact Us
                   </Button>
                 </Link>
@@ -239,5 +274,5 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

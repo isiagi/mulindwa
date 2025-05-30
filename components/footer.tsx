@@ -128,6 +128,7 @@ export default function Footer() {
               </Link>
             </div>
             <div className="space-y-2">
+              <p className="text-sm text-white/80">P.O. Box 570095</p>
               <p className="text-sm text-white/80">Kiboga District, Uganda</p>
               <p className="text-sm text-white/80">
                 mulindwacharityfoundation@gmail.com
