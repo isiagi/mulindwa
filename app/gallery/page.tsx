@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { imagePaths } from "@/app/utils/image-paths"
-import AnimateOnScroll from "@/components/animate-on-scroll"
-import DraggableLightbox from "@/components/draggable-lightbox"
+import { useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { imagePaths } from "@/app/utils/image-paths";
+import AnimateOnScroll from "@/components/animate-on-scroll";
+import DraggableLightbox from "@/components/draggable-lightbox";
 
 // Define image categories for filtering
 const categories = [
@@ -15,7 +15,7 @@ const categories = [
   { id: "skills", name: "Skills Training" },
   { id: "wash", name: "WASH Initiatives" },
   { id: "events", name: "Events" },
-]
+];
 
 // Sample gallery images with metadata
 const galleryImages = [
@@ -25,7 +25,8 @@ const galleryImages = [
     alt: "Children in classroom",
     category: "education",
     title: "Primary Education Support",
-    description: "Students attending classes at one of our supported schools in Kiboga district.",
+    description:
+      "Students attending classes at one of our supported schools in Kiboga district.",
   },
   {
     id: 2,
@@ -33,7 +34,8 @@ const galleryImages = [
     alt: "Medical camp",
     category: "healthcare",
     title: "Mobile Medical Camp",
-    description: "Our healthcare team providing medical services in a remote village.",
+    description:
+      "Our healthcare team providing medical services in a remote village.",
   },
   {
     id: 3,
@@ -41,7 +43,8 @@ const galleryImages = [
     alt: "Vocational training",
     category: "skills",
     title: "Tailoring Workshop",
-    description: "Women learning tailoring skills as part of our vocational training program.",
+    description:
+      "Women learning tailoring skills as part of our vocational training program.",
   },
   {
     id: 4,
@@ -49,7 +52,8 @@ const galleryImages = [
     alt: "Water well construction",
     category: "wash",
     title: "Clean Water Project",
-    description: "Construction of a water well to provide clean drinking water to a community.",
+    description:
+      "Construction of a water well to provide clean drinking water to a community.",
   },
   {
     id: 5,
@@ -57,7 +61,8 @@ const galleryImages = [
     alt: "Community meeting",
     category: "events",
     title: "Community Engagement",
-    description: "Meeting with community leaders to discuss local needs and initiatives.",
+    description:
+      "Meeting with community leaders to discuss local needs and initiatives.",
   },
   {
     id: 6,
@@ -65,7 +70,8 @@ const galleryImages = [
     alt: "School supplies distribution",
     category: "education",
     title: "School Supplies Distribution",
-    description: "Distributing books, pens, and other school supplies to students.",
+    description:
+      "Distributing books, pens, and other school supplies to students.",
   },
   {
     id: 7,
@@ -81,7 +87,8 @@ const galleryImages = [
     alt: "Computer training",
     category: "skills",
     title: "Digital Skills Training",
-    description: "Youth learning computer skills at our digital literacy center.",
+    description:
+      "Youth learning computer skills at our digital literacy center.",
   },
   {
     id: 9,
@@ -89,7 +96,8 @@ const galleryImages = [
     alt: "Hygiene education",
     category: "wash",
     title: "Hygiene Education",
-    description: "Teaching proper handwashing techniques to prevent disease spread.",
+    description:
+      "Teaching proper handwashing techniques to prevent disease spread.",
   },
   {
     id: 10,
@@ -97,62 +105,313 @@ const galleryImages = [
     alt: "Fundraising event",
     category: "events",
     title: "Annual Fundraising Gala",
-    description: "Our annual fundraising event bringing together supporters and partners.",
+    description:
+      "Our annual fundraising event bringing together supporters and partners.",
   },
   {
     id: 11,
-    src: imagePaths.galleryEducation3,
+    src: "/images/32.jpeg",
     alt: "Scholarship recipients",
     category: "education",
     title: "Scholarship Program",
-    description: "Students who received scholarships to continue their education.",
+    description:
+      "Students who received scholarships to continue their education.",
   },
   {
     id: 12,
-    src: imagePaths.gallerySkills3,
+    src: "/images/33.jpeg",
     alt: "Agricultural training",
     category: "skills",
     title: "Agricultural Training",
-    description: "Teaching sustainable farming techniques to improve food security.",
+    description:
+      "Teaching sustainable farming techniques to improve food security.",
   },
   {
     id: 13,
-    src: imagePaths.galleryHealthcare3,
+    src: "/images/34.jpeg",
     alt: "Community health workers",
     category: "healthcare",
     title: "Community Health Workers",
-    description: "Training local health workers to provide basic healthcare in their communities.",
+    description:
+      "Training local health workers to provide basic healthcare in their communities.",
   },
   {
     id: 14,
-    src: imagePaths.galleryWash3,
+    src: "/images/35.jpeg",
     alt: "Sanitation facility",
     category: "wash",
     title: "Sanitation Facilities",
-    description: "New sanitation facilities built at a local school to improve hygiene.",
+    description:
+      "New sanitation facilities built at a local school to improve hygiene.",
   },
   {
     id: 15,
-    src: imagePaths.galleryEvents3,
+    src: "/images/36.jpeg",
     alt: "Youth conference",
     category: "events",
     title: "Youth Leadership Conference",
-    description: "Annual conference bringing together young leaders from across Uganda.",
+    description:
+      "Annual conference bringing together young leaders from across Uganda.",
   },
-]
+  {
+    id: 16,
+    src: "/images/37.jpeg",
+    alt: "Clean water distribution",
+    category: "wash",
+    title: "Clean Water Distribution",
+    description:
+      "Distributing clean water to community members in need of clean drinking water.",
+  },
+  {
+    id: 17,
+    src: "/images/38.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 18,
+    src: "/images/39.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 19,
+    src: "/images/40.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 20,
+    src: "/images/41.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 21,
+    src: "/images/42.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 22,
+    src: "/images/43.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 23,
+    src: "/images/44.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 24,
+    src: "/images/45.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 25,
+    src: "/images/46.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 26,
+    src: "/images/47.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 27,
+    src: "/images/48.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 28,
+    src: "/images/49.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 29,
+    src: "/images/50.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 30,
+    src: "/images/51.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 31,
+    src: "/images/52.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 32,
+    src: "/images/53.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 33,
+    src: "/images/54.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 34,
+    src: "/images/55.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 35,
+    src: "/images/56.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 36,
+    src: "/images/57.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 37,
+    src: "/images/58.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 38,
+    src: "/images/59.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 39,
+    src: "/images/60.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 40,
+    src: "/images/61.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 41,
+    src: "/images/62.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 42,
+    src: "/images/63.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 43,
+    src: "/images/64.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 44,
+    src: "/images/65.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+  {
+    id: 45,
+    src: "/images/66.jpeg",
+    alt: "Youth leadership",
+    category: "skills",
+    title: "Youth Leadership Training",
+    description: "Training youth to become leaders in their communities.",
+  },
+];
 
 export default function GalleryPage() {
-  const [activeCategory, setActiveCategory] = useState("all")
-  const [selectedImage, setSelectedImage] = useState<(typeof galleryImages)[0] | null>(null)
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedImage, setSelectedImage] = useState<
+    (typeof galleryImages)[0] | null
+  >(null);
 
   // Filter images based on selected category
   const filteredImages =
-    activeCategory === "all" ? galleryImages : galleryImages.filter((image) => image.category === activeCategory)
+    activeCategory === "all"
+      ? galleryImages
+      : galleryImages.filter((image) => image.category === activeCategory);
 
   // Get category name for the selected image
   const selectedCategoryName = selectedImage
     ? categories.find((cat) => cat.id === selectedImage.category)?.name
-    : undefined
+    : undefined;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -194,7 +453,9 @@ export default function GalleryPage() {
               {categories.map((category) => (
                 <Button
                   key={category.id}
-                  variant={activeCategory === category.id ? "default" : "outline"}
+                  variant={
+                    activeCategory === category.id ? "default" : "outline"
+                  }
                   className={
                     activeCategory === category.id
                       ? "bg-[#8c3420] hover:bg-[#6a2718] text-white"
@@ -215,7 +476,12 @@ export default function GalleryPage() {
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredImages.map((image, index) => (
-              <AnimateOnScroll key={image.id} variant="fade-up" duration={700} delay={100 * (index % 4)}>
+              <AnimateOnScroll
+                key={image.id}
+                variant="fade-up"
+                duration={700}
+                delay={100 * (index % 4)}
+              >
                 <div
                   className="group relative overflow-hidden rounded-lg shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl"
                   onClick={() => setSelectedImage(image)}
@@ -230,8 +496,12 @@ export default function GalleryPage() {
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h3 className="text-white font-bold text-lg">{image.title}</h3>
-                    <p className="text-white/80 text-sm line-clamp-2">{image.description}</p>
+                    <h3 className="text-white font-bold text-lg">
+                      {image.title}
+                    </h3>
+                    <p className="text-white/80 text-sm line-clamp-2">
+                      {image.description}
+                    </p>
                   </div>
                 </div>
               </AnimateOnScroll>
@@ -241,7 +511,9 @@ export default function GalleryPage() {
           {filteredImages.length === 0 && (
             <AnimateOnScroll variant="fade-up" duration={700}>
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <p className="text-gray-500 text-lg">No images found in this category.</p>
+                <p className="text-gray-500 text-lg">
+                  No images found in this category.
+                </p>
                 <Button
                   className="mt-4 bg-[#8c3420] hover:bg-[#6a2718] text-white"
                   onClick={() => setActiveCategory("all")}
@@ -270,16 +542,26 @@ export default function GalleryPage() {
           <AnimateOnScroll variant="fade-up" duration={700}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Support Our Work</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Support Our Work
+                </h2>
                 <p className="mx-auto max-w-[700px] text-white/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Help us continue making a difference in the lives of vulnerable individuals across Uganda.
+                  Help us continue making a difference in the lives of
+                  vulnerable individuals across Uganda.
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button className="bg-white text-[#8c3420] hover:bg-gray-100" asChild>
+                <Button
+                  className="bg-white text-[#8c3420] hover:bg-gray-100"
+                  asChild
+                >
                   <a href="/get-involved">Donate Now</a>
                 </Button>
-                <Button variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+                <Button
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10"
+                  asChild
+                >
                   <a href="/contact">Contact Us</a>
                 </Button>
               </div>
@@ -288,5 +570,5 @@ export default function GalleryPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

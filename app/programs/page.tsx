@@ -1,8 +1,8 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { BookOpen, Users, Heart, Droplets } from "lucide-react"
-import { imagePaths } from "@/app/utils/image-paths"
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { BookOpen, Users, Heart, Droplets } from "lucide-react";
+import { imagePaths } from "@/app/utils/image-paths";
 
 export default function ProgramsPage() {
   return (
@@ -28,7 +28,8 @@ export default function ProgramsPage() {
                 Our Programs
               </h1>
               <p className="mx-auto max-w-[700px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Discover how we're making a difference in the lives of vulnerable individuals across Uganda.
+                Discover how we're making a difference in the lives of
+                vulnerable individuals across Uganda.
               </p>
             </div>
           </div>
@@ -36,7 +37,10 @@ export default function ProgramsPage() {
       </section>
 
       {/* Education Support */}
-      <section id="education" className="w-full py-12 md:py-24 lg:py-32 bg-white">
+      <section
+        id="education"
+        className="w-full py-12 md:py-24 lg:py-32 bg-white"
+      >
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="flex items-center justify-center">
@@ -51,17 +55,24 @@ export default function ProgramsPage() {
             <div className="flex flex-col justify-center space-y-4">
               <div className="inline-flex items-center space-x-2">
                 <BookOpen className="h-5 w-5 text-[#8c3420]" />
-                <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">Education Support</h2>
+                <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">
+                  Education Support
+                </h2>
               </div>
               <p className="text-gray-700 md:text-lg">
-                Our education support program provides school fees, scholastic materials, and educational opportunities
-                for orphaned and vulnerable children in Uganda. We believe that education is the key to breaking the
-                cycle of poverty and creating a brighter future.
+                Our education support program provides school fees, scholastic
+                materials, and educational opportunities for orphaned and
+                vulnerable children in Uganda. We believe that education is the
+                key to breaking the cycle of poverty and creating a brighter
+                future.
               </p>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start space-x-2">
                   <span className="text-[#8c3420] font-bold">•</span>
-                  <span>School fees and scholastic materials for primary and secondary students</span>
+                  <span>
+                    School fees and scholastic materials for primary and
+                    secondary students
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-[#8c3420] font-bold">•</span>
@@ -78,7 +89,9 @@ export default function ProgramsPage() {
               </ul>
               <div>
                 <Link href="/get-involved">
-                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">Support This Program</Button>
+                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">
+                    Support This Program
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -87,18 +100,24 @@ export default function ProgramsPage() {
       </section>
 
       {/* Skills Training */}
-      <section id="skills" className="w-full py-12 md:py-24 lg:py-32 bg-[#f4f4f4]">
+      <section
+        id="skills"
+        className="w-full py-12 md:py-24 lg:py-32 bg-[#f4f4f4]"
+      >
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="flex flex-col justify-center space-y-4 order-2 lg:order-1">
               <div className="inline-flex items-center space-x-2">
                 <Users className="h-5 w-5 text-[#8c3420]" />
-                <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">Skills Training</h2>
+                <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">
+                  Skills Training
+                </h2>
               </div>
               <p className="text-gray-700 md:text-lg">
-                Our vocational and life skills training programs empower youth and women to create sustainable
-                livelihoods. By equipping individuals with practical skills, we help them become self-reliant and
-                contribute to their communities.
+                Our vocational and life skills training programs empower youth
+                and women to create sustainable livelihoods. By equipping
+                individuals with practical skills, we help them become
+                self-reliant and contribute to their communities.
               </p>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start space-x-2">
@@ -120,7 +139,9 @@ export default function ProgramsPage() {
               </ul>
               <div>
                 <Link href="/get-involved">
-                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">Support This Program</Button>
+                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">
+                    Support This Program
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -138,7 +159,10 @@ export default function ProgramsPage() {
       </section>
 
       {/* Healthcare */}
-      <section id="healthcare" className="w-full py-12 md:py-24 lg:py-32 bg-white">
+      <section
+        id="healthcare"
+        className="w-full py-12 md:py-24 lg:py-32 bg-white"
+      >
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="flex items-center justify-center">
@@ -153,11 +177,15 @@ export default function ProgramsPage() {
             <div className="flex flex-col justify-center space-y-4">
               <div className="inline-flex items-center space-x-2">
                 <Heart className="h-5 w-5 text-[#8c3420]" />
-                <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">Healthcare</h2>
+                <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">
+                  Healthcare
+                </h2>
               </div>
               <p className="text-gray-700 md:text-lg">
-                Our healthcare initiatives provide basic healthcare support and mobile medical camps to promote health
-                in underserved communities. We believe that good health is fundamental to human dignity and development.
+                Our healthcare initiatives provide basic healthcare support and
+                mobile medical camps to promote health in underserved
+                communities. We believe that good health is fundamental to human
+                dignity and development.
               </p>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start space-x-2">
@@ -179,7 +207,9 @@ export default function ProgramsPage() {
               </ul>
               <div>
                 <Link href="/get-involved">
-                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">Support This Program</Button>
+                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">
+                    Support This Program
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -188,17 +218,23 @@ export default function ProgramsPage() {
       </section>
 
       {/* WASH Initiatives */}
-      <section id="wash" className="w-full py-12 md:py-24 lg:py-32 bg-[#f4f4f4]">
+      <section
+        id="wash"
+        className="w-full py-12 md:py-24 lg:py-32 bg-[#f4f4f4]"
+      >
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="flex flex-col justify-center space-y-4 order-2 lg:order-1">
               <div className="inline-flex items-center space-x-2">
                 <Droplets className="h-5 w-5 text-[#8c3420]" />
-                <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">WASH Initiatives</h2>
+                <h2 className="text-3xl font-bold tracking-tighter text-[#8c3420] sm:text-4xl">
+                  WASH Initiatives
+                </h2>
               </div>
               <p className="text-gray-700 md:text-lg">
-                Our Water, Sanitation, and Hygiene (WASH) initiatives improve community health and wellbeing by
-                providing access to clean water and promoting good hygiene practices.
+                Our Water, Sanitation, and Hygiene (WASH) initiatives improve
+                community health and wellbeing by providing access to clean
+                water and promoting good hygiene practices.
               </p>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start space-x-2">
@@ -220,7 +256,9 @@ export default function ProgramsPage() {
               </ul>
               <div>
                 <Link href="/get-involved">
-                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">Support This Program</Button>
+                  <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">
+                    Support This Program
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -242,18 +280,25 @@ export default function ProgramsPage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get Involved</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Get Involved
+              </h2>
               <p className="mx-auto max-w-[700px] text-white/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                There are many ways to support our programs and make a difference in the lives of vulnerable individuals
-                in Uganda.
+                There are many ways to support our programs and make a
+                difference in the lives of vulnerable individuals in Uganda.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Link href="/get-involved">
-                <Button className="bg-white text-[#8c3420] hover:bg-gray-100">Donate Now</Button>
+                <Button className="bg-white text-[#8c3420] hover:bg-gray-100">
+                  Donate Now
+                </Button>
               </Link>
               <Link href="/contact">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button
+                  variant="outline"
+                  className="border-white bg-transparent text-white hover:bg-white/10"
+                >
                   Contact Us
                 </Button>
               </Link>
@@ -262,5 +307,5 @@ export default function ProgramsPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

@@ -20,7 +20,7 @@ export const imagePaths = {
   ourMission: "/images/community-meeting.png",
   educationProgram: "/images/15.jpeg",
   healthcareProgram: "/images/26.jpeg",
-  volunteers: "/images/9.jpeg",
+  volunteers: "/images/33.jpeg",
   skillsProgram: "/images/3.jpeg",
   volunteersWorking: "/images/volunteers.png",
 
