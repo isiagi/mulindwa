@@ -26,9 +26,11 @@ export const imagePaths = {
 
   // About page
   foundationStory: "/images/logo.jpeg",
-  teamMember1: "/images/team-member-1.png",
-  teamMember2: "/images/team-member-2.png",
-  teamMember3: "/images/team-member-3.png",
+  // Team
+  teamMember1: "/images/team1.jpeg",
+  teamMember2: "/images/team2.jpeg",
+  teamMember3: "/images/team3.jpeg",
+  teamMember4: "/images/team4.jpeg",
 
   // Programs page
   educationSupport: "/images/14.jpeg",
