@@ -143,11 +143,15 @@ export default function ContactPage() {
                     <Phone className="h-5 w-5 text-[#8c3420]" />
                     <h3 className="font-bold">Phone</h3>
                   </div>
-                  <p className="text-sm text-gray-500">
-                    +256 757 437167
-                    <br />
-                    +256 783 292657
-                  </p>
+                  <div className="flex gap-5 flex-wrap">
+                    <span>
+                      <p className="text-sm text-gray-500">+256 757 437167</p>
+                      <p className="text-sm text-gray-500">+256 783 292657</p>
+                    </span>
+                    <span>
+                      <p className="text-sm text-gray-500">+256 756 228298</p>
+                    </span>
+                  </div>
                 </div>
                 <div className="flex flex-col space-y-3 rounded-lg border p-4 shadow-sm">
                   <div className="flex items-center space-x-3">

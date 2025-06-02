@@ -175,46 +175,6 @@ export default function AboutPage() {
             </div>
           </AnimateOnScroll>
           <div className="mx-auto grid max-w-5xl gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
-            <AnimateOnScroll variant="fade-up" duration={700} delay={100}>
-              <div className="flex flex-col items-center space-y-4">
-                <div className="h-40 w-40 overflow-hidden rounded-full bg-gray-200">
-                  <Image
-                    src={imagePaths.teamMember1 || "/placeholder.svg"}
-                    alt="Team member"
-                    width={160}
-                    height={160}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-[#8c3420]">
-                    John Mulindwa
-                  </h3>
-                  <p className="text-sm text-gray-500">
-                    Founder & Executive Director
-                  </p>
-                </div>
-              </div>
-            </AnimateOnScroll>
-            <AnimateOnScroll variant="fade-up" duration={700} delay={200}>
-              <div className="flex flex-col items-center space-y-4">
-                <div className="h-40 w-40 overflow-hidden rounded-full bg-gray-200">
-                  <Image
-                    src={imagePaths.teamMember2 || "/placeholder.svg"}
-                    alt="Team member"
-                    width={160}
-                    height={160}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-[#8c3420]">
-                    Sarah Nakato
-                  </h3>
-                  <p className="text-sm text-gray-500">Programs Director</p>
-                </div>
-              </div>
-            </AnimateOnScroll>
             <AnimateOnScroll variant="fade-up" duration={700} delay={300}>
               <div className="flex flex-col items-center space-y-4">
                 <div className="h-40 w-40 overflow-hidden rounded-full bg-gray-200">
@@ -228,11 +188,67 @@ export default function AboutPage() {
                 </div>
                 <div className="text-center">
                   <h3 className="text-xl font-bold text-[#8c3420]">
-                    David Mukasa
+                    Mulindwa Abudu
                   </h3>
-                  <p className="text-sm text-gray-500">
-                    Community Outreach Coordinator
-                  </p>
+                  <p className="text-sm text-gray-500">CEO</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fade-up" duration={700} delay={200}>
+              <div className="flex flex-col items-center space-y-4">
+                <div className="h-40 w-40 overflow-hidden rounded-full bg-gray-200">
+                  <Image
+                    src={imagePaths.teamMember2 || "/placeholder.svg"}
+                    alt="Team member"
+                    width={160}
+                    height={160}
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-[#8c3420]">
+                    Mulindwa Edrisa
+                  </h3>
+                  <p className="text-sm text-gray-500">Director</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll variant="fade-up" duration={700} delay={300}>
+              <div className="flex flex-col items-center space-y-4">
+                <div className="h-40 w-40 overflow-hidden rounded-full bg-gray-200">
+                  <Image
+                    src={imagePaths.teamMember4 || "/placeholder.svg"}
+                    alt="Team member"
+                    width={160}
+                    height={160}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-[#8c3420]">
+                    Kisuule .N.Racheal.
+                  </h3>
+                  <p className="text-sm text-gray-500">General Secretary</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+            <AnimateOnScroll variant="fade-up" duration={700} delay={100}>
+              <div className="flex flex-col items-center space-y-4">
+                <div className="h-40 w-40 overflow-hidden rounded-full bg-gray-200">
+                  <Image
+                    src={imagePaths.teamMember1 || "/placeholder.svg"}
+                    alt="Team member"
+                    width={160}
+                    height={160}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-[#8c3420]">
+                    Wasswa Hassan Christopher
+                  </h3>
+                  <p className="text-sm text-gray-500">Project Manager</p>
                 </div>
               </div>
             </AnimateOnScroll>
