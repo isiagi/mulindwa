@@ -188,9 +188,11 @@ export default function AboutPage() {
                 </div>
                 <div className="text-center">
                   <h3 className="text-xl font-bold text-[#8c3420]">
+
                     Mulindwa Abudu
                   </h3>
                   <p className="text-sm text-gray-500">CEO</p>
+
                 </div>
               </div>
             </AnimateOnScroll>
@@ -207,9 +209,11 @@ export default function AboutPage() {
                 </div>
                 <div className="text-center">
                   <h3 className="text-xl font-bold text-[#8c3420]">
+
                     Mulindwa Edrisa
                   </h3>
                   <p className="text-sm text-gray-500">Director</p>
+
                 </div>
               </div>
             </AnimateOnScroll>
@@ -227,6 +231,7 @@ export default function AboutPage() {
                 </div>
                 <div className="text-center">
                   <h3 className="text-xl font-bold text-[#8c3420]">
+
                     Kisuule .N.Racheal.
                   </h3>
                   <p className="text-sm text-gray-500">General Secretary</p>
@@ -249,6 +254,7 @@ export default function AboutPage() {
                     Wasswa Hassan Christopher
                   </h3>
                   <p className="text-sm text-gray-500">Project Manager</p>
+
                 </div>
               </div>
             </AnimateOnScroll>
