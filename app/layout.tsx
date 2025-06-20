@@ -9,6 +9,7 @@ import ScrollToTop from "@/components/scroll-to-top";
 import { Toaster } from "@/components/toaster";
 import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import WhatsAppChat from "@/components/WhatsAppChat";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,6 +60,10 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <ScrollToTop />
+            <WhatsAppChat
+              phoneNumber="256783292657" // Replace with your actual WhatsApp number
+              message="Hello! I'd like to know more about Mulindwa Charity Foundation and how I can help."
+            />
             <Toaster />
           </div>
         </ThemeProvider>
