@@ -1,6 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, BookOpen, Droplets, Users, HandHeart } from "lucide-react";
+import {
+  Heart,
+  BookOpen,
+  Droplets,
+  Users,
+  HandHeart,
+  DollarSign,
+  Clock,
+  Target,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { imagePaths } from "@/app/utils/image-paths";
 import AnimateOnScroll from "@/components/animate-on-scroll";
@@ -38,6 +47,66 @@ export default function Home() {
         "Empowering youth and women with vocational skills for sustainable livelihoods.",
     },
   ];
+
+  // Sample donation needs data - you can replace this with data from your API/database
+  const donationNeeds = [
+    {
+      id: 1,
+      name: "Nalwanja Beatrice",
+      age: 13,
+      location: "Kampala District",
+      need: "School Fees & Supplies",
+      story:
+        "Nalwanja is a young girl who needs to continue her education. Her family cannot afford the fees and needs community support.",
+      amountNeeded: 500000, // UGX
+      amountRaised: 150000,
+      image: "/images/don5.jpeg",
+      urgency: "High",
+      category: "Education",
+    },
+    {
+      id: 2,
+      name: "Nakawunde Blessing",
+      age: 15,
+      location: "Jinja District",
+      need: "School Fees",
+      story:
+        "Nakawunde is a young girl who needs to continue her education. Her family cannot afford the fees and needs community support.",
+      amountNeeded: 2000000, // UGX
+      amountRaised: 450000,
+      image: "/images/don2.jpeg",
+      urgency: "Urgent",
+      category: "Education",
+    },
+    {
+      id: 3,
+      name: "Benson Nsubuga",
+      age: 5,
+      location: "Kampala District",
+      need: "School Fees",
+      story:
+        "Benson is a young child who needs to continue her education. Her family cannot afford the fees and needs community support.",
+      amountNeeded: 800000, // UGX
+      amountRaised: 200000,
+      image: "/images/don3.jpeg",
+      urgency: "High",
+      category: "Education",
+    },
+  ];
+
+  // Function to calculate progress percentage
+  const calculateProgress = (raised, needed) => {
+    return Math.round((raised / needed) * 100);
+  };
+
+  // Function to format currency
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat("en-UG", {
+      style: "currency",
+      currency: "UGX",
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -113,8 +182,100 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Programs Preview */}
+      {/* People Who Need Help Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-[#f4f4f4]">
+        <div className="container px-4 md:px-6">
+          <AnimateOnScroll variant="fade-up" duration={700}>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#8c3420]">
+                  People Who Need Your Help
+                </h2>
+                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Every donation makes a real difference in someone's life. Meet
+                  some of the people waiting for your support.
+                </p>
+              </div>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="mx-auto grid max-w-6xl gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
+            {donationNeeds.map((person, index) => (
+              <AnimateOnScroll
+                key={person.id}
+                variant="fade-up"
+                duration={700}
+                delay={100 * (index + 1)}
+              >
+                <div className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  {/* Image and Urgency Badge */}
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src={person.image}
+                      alt={`${person.name} - ${person.need}`}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span
+                        className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ${
+                          person.urgency === "Urgent"
+                            ? "bg-red-100 text-red-800"
+                            : person.urgency === "High"
+                            ? "bg-orange-100 text-orange-800"
+                            : "bg-yellow-100 text-yellow-800"
+                        }`}
+                      >
+                        <Clock className="h-3 w-3 mr-1" />
+                        {person.urgency}
+                      </span>
+                    </div>
+                    <div className="absolute top-3 right-3">
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-[#8c3420] text-white">
+                        {person.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-[#8c3420] mb-2">
+                        {person.name}, {person.age}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-2">
+                        📍 {person.location}
+                      </p>
+                      <p className="text-lg font-semibold text-gray-800 mb-3">
+                        {person.need}
+                      </p>
+                      <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                        {person.story}
+                      </p>
+                    </div>
+
+                    {/* Progress Section */}
+                  </div>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+
+          <AnimateOnScroll variant="fade-up" duration={700} delay={500}>
+            <div className="flex justify-center mt-8">
+              <Link href="/donation-needs">
+                <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white">
+                  <Target className="h-4 w-4 mr-2" />
+                  View All Donation Needs
+                </Button>
+              </Link>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* Programs Preview */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
         <div className="container px-4 md:px-6">
           <AnimateOnScroll variant="fade-up" duration={700}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -131,7 +292,7 @@ export default function Home() {
           </AnimateOnScroll>
           <div className="mx-auto grid max-w-5xl gap-6 py-12 md:grid-cols-2 lg:grid-cols-4">
             <AnimateOnScroll variant="fade-up" duration={700} delay={100}>
-              <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 shadow-lg">
+              <div className="flex flex-col items-center space-y-2 rounded-lg bg-[#f4f4f4] p-4 shadow-lg">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#8c3420]">
                   <BookOpen className="h-5 w-5 text-white" />
                 </div>
@@ -145,7 +306,7 @@ export default function Home() {
               </div>
             </AnimateOnScroll>
             <AnimateOnScroll variant="fade-up" duration={700} delay={200}>
-              <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 shadow-lg">
+              <div className="flex flex-col items-center space-y-2 rounded-lg bg-[#f4f4f4] p-4 shadow-lg">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#8c3420]">
                   <Users className="h-5 w-5 text-white" />
                 </div>
@@ -159,7 +320,7 @@ export default function Home() {
               </div>
             </AnimateOnScroll>
             <AnimateOnScroll variant="fade-up" duration={700} delay={300}>
-              <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 shadow-lg">
+              <div className="flex flex-col items-center space-y-2 rounded-lg bg-[#f4f4f4] p-4 shadow-lg">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#8c3420]">
                   <Heart className="h-5 w-5 text-white" />
                 </div>
@@ -171,7 +332,7 @@ export default function Home() {
               </div>
             </AnimateOnScroll>
             <AnimateOnScroll variant="fade-up" duration={700} delay={400}>
-              <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 shadow-lg">
+              <div className="flex flex-col items-center space-y-2 rounded-lg bg-[#f4f4f4] p-4 shadow-lg">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#8c3420]">
                   <Droplets className="h-5 w-5 text-white" />
                 </div>
