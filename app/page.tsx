@@ -95,12 +95,12 @@ export default function Home() {
   ];
 
   // Function to calculate progress percentage
-  const calculateProgress = (raised, needed) => {
+  const calculateProgress = (raised: any, needed: any) => {
     return Math.round((raised / needed) * 100);
   };
 
   // Function to format currency
-  const formatCurrency = (amount) => {
+  const formatCurrency = (amount: any) => {
     return new Intl.NumberFormat("en-UG", {
       style: "currency",
       currency: "UGX",
