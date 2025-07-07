@@ -256,8 +256,11 @@ export default function Home() {
 
                     {/* Progress Section */}
                     <div className="mt-4 flex items-center">
-                      <Link href={`/donation-needs/${person.id}`}>
-                        <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2">
+                      <Link
+                        href={`/donation-needs/${person.id}`}
+                        className="flex-1"
+                      >
+                        <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-sm py-6 mt-2">
                           <Target className="h-5 w-5 mr-2" /> Donate Now
                         </Button>
                       </Link>
