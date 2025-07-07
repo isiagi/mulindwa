@@ -7,6 +7,7 @@ import { Clock, Target } from "lucide-react";
 const donationNeeds = [
   {
     id: 1,
+    type: "person",
     name: "Nalwanja Beatrice",
     age: 13,
     location: "Kampala District",
@@ -21,6 +22,7 @@ const donationNeeds = [
   },
   {
     id: 2,
+    type: "person",
     name: "Nakawunde Blessing",
     age: 15,
     location: "Jinja District",
@@ -35,6 +37,7 @@ const donationNeeds = [
   },
   {
     id: 3,
+    type: "person",
     name: "Benson Nsubuga",
     age: 5,
     location: "Kampala District",
@@ -46,6 +49,39 @@ const donationNeeds = [
     image: "/images/don3.jpeg",
     urgency: "High",
     category: "Education",
+  },
+  {
+    id: 4,
+    type: "video",
+    title: "Our Impact in Uganda",
+    description: "Watch how your donations are changing lives across Uganda.",
+    video: "/images/video1.mp4",
+    image: "/images/video-thumb.jpg", // optional thumbnail
+    amountNeeded: 1000000, // UGX
+    amountRaised: 250000,
+  },
+  {
+    id: 5,
+    type: "person",
+    title: "Car Donation",
+    name: "Toyota Hiace",
+    need: "Support our community",
+    description: "Help us buy a car to support our community.",
+    image: "/images/car.jpeg",
+    story: "We need to buy a car to support our community.",
+  },
+  {
+    id: 6,
+    type: "video",
+    title: "Building House",
+    name: "Benson Nsubuga",
+    need: "Need to build a house for my family",
+    description: "Help us build a house for his family.",
+    image: "/images/20.jpeg",
+    video: "/images/video2.mp4",
+    story: "We need to build a house for his family.",
+    amountNeeded: 1000000, // UGX
+    amountRaised: 250000,
   },
 ];
 
@@ -85,6 +121,159 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
     );
   }
 
+  if (need.type === "video") {
+    return (
+      <div className="min-h-screen bg-[#f4f4f4] py-12">
+        <div className="container px-4 md:px-6 max-w-5xl mx-auto">
+          <div className="mb-8 flex items-center justify-between">
+            <h1 className="text-3xl font-bold text-[#8c3420]">
+              {need.title || "Video"}
+            </h1>
+            <Link href="/donation-needs">
+              <Button
+                variant="outline"
+                className="border-[#8c3420] text-[#8c3420]"
+              >
+                &larr; Back to All Needs
+              </Button>
+            </Link>
+          </div>
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left: Video or Thumbnail */}
+            <div className="lg:w-1/2 w-full flex-shrink-0 flex flex-col gap-4">
+              {need.video ? (
+                <div className="w-full aspect-video bg-[#f4f4f4] rounded-lg overflow-hidden">
+                  <iframe
+                    src={need.video || ""}
+                    title={need.title || "Video"}
+                    className="w-full h-full min-h-[300px]"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              ) : need.image ? (
+                <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src={need.image || "/placeholder.svg"}
+                    alt={need.title || need.name || "Video"}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : null}
+            </div>
+            {/* Right: Details */}
+            <div className="lg:w-1/2 w-full flex flex-col gap-4">
+              <h2 className="text-2xl font-bold text-[#8c3420] mb-2">
+                {need.title || "Video"}
+              </h2>
+              <p className="text-gray-700 mb-4 whitespace-pre-line">
+                {need.description}
+              </p>
+              {/* Donation section for video */}
+              {typeof need.amountNeeded === "number" &&
+                typeof need.amountRaised === "number" && (
+                  <div className="mt-2">
+                    {/* <div className="flex justify-between text-xs text-gray-500 mb-1">
+                      <span>
+                        Raised: {formatCurrency(need.amountRaised ?? 0)}
+                      </span>
+                      <span>
+                        Goal: {formatCurrency(need.amountNeeded ?? 0)}
+                      </span>
+                    </div> */}
+                    {/* <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+                      <div
+                        className="bg-[#8c3420] h-3 rounded-full transition-all duration-500"
+                        style={{
+                          width: `${calculateProgress(
+                            need.amountRaised ?? 0,
+                            need.amountNeeded ?? 1
+                          )}%`,
+                        }}
+                      ></div>
+                    </div> */}
+                    {/* <div className="text-xs text-gray-700 font-semibold mb-2">
+                      {calculateProgress(
+                        need.amountRaised ?? 0,
+                        need.amountNeeded ?? 1
+                      )}
+                      % funded
+                    </div> */}
+                    <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2">
+                      <Target className="h-5 w-5 mr-2" /> Donate Now
+                    </Button>
+                  </div>
+                )}
+              <div className="mt-8 bg-[#f8f4e3] rounded-lg p-4 shadow-inner">
+                <h3 className="text-lg font-bold text-[#8c3420] mb-2">
+                  Why Your Support Matters
+                </h3>
+                <p className="text-gray-700">
+                  Your support helps us reach more people and create lasting
+                  change. Every view, share, and donation makes a difference!
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Other Needs Section */}
+          {otherNeeds.length > 0 && (
+            <div className="mt-12">
+              <h3 className="text-xl font-bold text-[#8c3420] mb-4">
+                Other People & Videos Who Need Help
+              </h3>
+              <div className="grid gap-6 md:grid-cols-2">
+                {otherNeeds.map((n) => (
+                  <Link
+                    key={n.id}
+                    href={`/donation-needs/${n.id}`}
+                    className="flex items-center gap-4 bg-white rounded-lg shadow p-4 hover:ring-2 hover:ring-[#8c3420] transition"
+                  >
+                    {n.type === "person" ? (
+                      <div className="relative h-16 w-16 rounded overflow-hidden flex-shrink-0">
+                        <Image
+                          src={n.image || "/placeholder.svg"}
+                          alt={n.name || "Person"}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative h-16 w-16 rounded overflow-hidden flex-shrink-0 bg-[#F4F4F4] flex items-center justify-center">
+                        <svg
+                          className="w-8 h-8 text-white opacity-80"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-[#8c3420]">
+                          {n.type === "person" ? n.name : n.title || "Video"}
+                        </span>
+                        {n.type === "person" && (
+                          <span className="text-xs text-gray-600">
+                            ({n.age})
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {n.type === "person" ? n.need : n.description}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#f4f4f4] py-12">
       <div className="container px-4 md:px-6 max-w-5xl mx-auto">
@@ -102,8 +291,28 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
           </Link>
         </div>
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left: Image */}
-          <div className="lg:w-1/2 w-full flex-shrink-0">
+          {/* Left: Video or Image */}
+          <div className="lg:w-1/2 w-full flex-shrink-0 flex flex-col gap-4">
+            {need.video && need.video.endsWith(".mp4") ? (
+              <video
+                className="w-full h-64 rounded-lg object-cover shadow-lg"
+                controls
+              >
+                <source src={need.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : need.video ? (
+              <div className="w-full h-64 rounded-lg overflow-hidden bg-[#F4F4F4] flex items-center justify-center shadow-lg">
+                <iframe
+                  src={need.video}
+                  title="Video"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            ) : null}
+            {/* Image as fallback or below video */}
             <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden shadow-lg">
               <Image
                 src={need.image}
@@ -164,7 +373,7 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
               </p>
             </div>
             <div className="mt-4">
-              <div className="flex justify-between text-xs text-gray-500 mb-1">
+              {/* <div className="flex justify-between text-xs text-gray-500 mb-1">
                 <span>Raised: {formatCurrency(need.amountRaised)}</span>
                 <span>Goal: {formatCurrency(need.amountNeeded)}</span>
               </div>
@@ -182,7 +391,7 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
               <div className="text-xs text-gray-700 font-semibold mb-2">
                 {calculateProgress(need.amountRaised, need.amountNeeded)}%
                 funded
-              </div>
+              </div> */}
               <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2">
                 <Target className="h-5 w-5 mr-2" /> Donate Now
               </Button>
@@ -214,8 +423,8 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
                 >
                   <div className="relative h-16 w-16 rounded overflow-hidden flex-shrink-0">
                     <Image
-                      src={n.image}
-                      alt={n.name}
+                      src={n.image || "/placeholder.svg"}
+                      alt={n.name || "Person"}
                       fill
                       className="object-cover"
                     />

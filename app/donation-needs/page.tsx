@@ -2,10 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Clock, Target } from "lucide-react";
+import { title } from "process";
 
 const donationNeeds = [
   {
     id: 1,
+    type: "person",
     name: "Nalwanja Beatrice",
     age: 13,
     location: "Kampala District",
@@ -20,6 +22,7 @@ const donationNeeds = [
   },
   {
     id: 2,
+    type: "person",
     name: "Nakawunde Blessing",
     age: 15,
     location: "Jinja District",
@@ -34,6 +37,7 @@ const donationNeeds = [
   },
   {
     id: 3,
+    type: "person",
     name: "Benson Nsubuga",
     age: 5,
     location: "Kampala District",
@@ -45,6 +49,35 @@ const donationNeeds = [
     image: "/images/don3.jpeg",
     urgency: "High",
     category: "Education",
+  },
+  {
+    id: 4,
+    type: "video",
+    title: "Our Impact in Uganda",
+    description: "Watch how your donations are changing lives across Uganda.",
+    video: "/images/video1.mp4",
+    image: "/images/13.jpeg", // optional thumbnail
+  },
+  {
+    id: 5,
+    type: "person",
+    title: "Car Donation",
+    name: "Toyota Hiace",
+    need: "Support our community",
+    description: "Help us buy a car to support our community.",
+    image: "/images/car.jpeg",
+    story: "We need to buy a car to support our community.",
+  },
+  {
+    id: 6,
+    type: "video",
+    title: "Building House",
+    name: "Benson Nsubuga",
+    need: "Need to build a house for my family",
+    description: "Help us build a house for his family.",
+    image: "/images/20.jpeg",
+    video: "/images/video2.mp4",
+    story: "We need to build a house for his family.",
   },
 ];
 
@@ -78,82 +111,132 @@ export default function DonationNeedsPage() {
           </Link>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {donationNeeds.map((person) => (
+          {donationNeeds.map((item) => (
             <Link
-              key={person.id}
-              href={`/donation-needs/${person.id}`}
+              key={item.id}
+              href={`/donation-needs/${item.id}`}
               className="group"
             >
-              <div className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group-hover:ring-2 group-hover:ring-[#8c3420] cursor-pointer">
-                <div className="relative h-56 w-full">
-                  <Image
-                    src={person.image}
-                    alt={`${person.name} - ${person.need}`}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span
-                      className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ${
-                        person.urgency === "Urgent"
-                          ? "bg-red-100 text-red-800"
-                          : person.urgency === "High"
-                          ? "bg-orange-100 text-orange-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      <Clock className="h-3 w-3 mr-1" />
-                      {person.urgency}
-                    </span>
+              {item.type === "person" ? (
+                <div className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group-hover:ring-2 group-hover:ring-[#8c3420] cursor-pointer">
+                  <div className="relative h-56 w-full">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={`${item.name} - ${item.need}`}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span
+                        className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ${
+                          item.urgency === "Urgent"
+                            ? "bg-red-100 text-red-800"
+                            : item.urgency === "High"
+                            ? "bg-orange-100 text-orange-800"
+                            : "bg-yellow-100 text-yellow-800"
+                        }`}
+                      >
+                        <Clock className="h-3 w-3 mr-1" />
+                        {item.urgency}
+                      </span>
+                    </div>
+                    <div className="absolute top-3 right-3">
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-[#8c3420] text-white">
+                        {item.category}
+                      </span>
+                    </div>
                   </div>
-                  <div className="absolute top-3 right-3">
-                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-[#8c3420] text-white">
-                      {person.category}
-                    </span>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h2 className="text-xl font-bold text-[#8c3420] mb-1">
+                      {item.name}, {item.age}
+                    </h2>
+                    <p className="text-sm text-gray-600 mb-1">
+                      📍 {item.location}
+                    </p>
+                    <p className="text-lg font-semibold text-gray-800 mb-2">
+                      {item.need}
+                    </p>
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-3">
+                      {item.story}
+                    </p>
+                    {/* <div className="mb-2">
+                      <div className="flex justify-between text-xs text-gray-500 mb-1">
+                        <span>
+                          Raised: {formatCurrency(item.amountRaised ?? 0)}
+                        </span>
+                        <span>
+                          Goal: {formatCurrency(item.amountNeeded ?? 0)}
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                        <div
+                          className="bg-[#8c3420] h-2.5 rounded-full"
+                          style={{
+                            width: `${calculateProgress(
+                              item.amountRaised ?? 0,
+                              item.amountNeeded ?? 1
+                            )}%`,
+                          }}
+                        ></div>
+                      </div>
+                      <div className="text-xs text-gray-700 font-semibold">
+                        {calculateProgress(
+                          item.amountRaised ?? 0,
+                          item.amountNeeded ?? 1
+                        )}
+                        % funded
+                      </div>
+                    </div> */}
+                    <Button className="mt-2 bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center">
+                      <Target className="h-4 w-4 mr-2" /> Donate Now
+                    </Button>
                   </div>
                 </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h2 className="text-xl font-bold text-[#8c3420] mb-1">
-                    {person.name}, {person.age}
-                  </h2>
-                  <p className="text-sm text-gray-600 mb-1">
-                    📍 {person.location}
-                  </p>
-                  <p className="text-lg font-semibold text-gray-800 mb-2">
-                    {person.need}
-                  </p>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-3">
-                    {person.story}
-                  </p>
-                  <div className="mb-2">
-                    <div className="flex justify-between text-xs text-gray-500 mb-1">
-                      <span>Raised: {formatCurrency(person.amountRaised)}</span>
-                      <span>Goal: {formatCurrency(person.amountNeeded)}</span>
+              ) : (
+                <div className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group-hover:ring-2 group-hover:ring-[#8c3420] cursor-pointer">
+                  {/* Video preview or thumbnail */}
+                  {item.image ? (
+                    <div className="relative h-56 w-full">
+                      <Image
+                        src={item.image || "/placeholder.svg"}
+                        alt={item.title || "Video"}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                        <svg
+                          className="w-16 h-16 text-white opacity-80"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                      <div
-                        className="bg-[#8c3420] h-2.5 rounded-full"
-                        style={{
-                          width: `${calculateProgress(
-                            person.amountRaised,
-                            person.amountNeeded
-                          )}%`,
-                        }}
-                      ></div>
+                  ) : item.video ? (
+                    <div className="w-full h-56 bg-black flex items-center justify-center">
+                      <iframe
+                        src={item.video || ""}
+                        title={item.title || "Video"}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
                     </div>
-                    <div className="text-xs text-gray-700 font-semibold">
-                      {calculateProgress(
-                        person.amountRaised,
-                        person.amountNeeded
-                      )}
-                      % funded
-                    </div>
+                  ) : null}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h2 className="text-xl font-bold text-[#8c3420] mb-2">
+                      {item.title}
+                    </h2>
+                    <p className="text-gray-700 mb-3 line-clamp-3">
+                      {item.description}
+                    </p>
+                    <Button className="mt-auto bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center">
+                      <Target className="h-4 w-4 mr-2" /> Watch Video
+                    </Button>
                   </div>
-                  <Button className="mt-2 bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center">
-                    <Target className="h-4 w-4 mr-2" /> Donate Now
-                  </Button>
                 </div>
-              </div>
+              )}
             </Link>
           ))}
         </div>
