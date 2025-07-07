@@ -1,8 +1,11 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Clock, Target } from "lucide-react";
+import { toast } from "sonner";
 
 const donationNeeds = [
   {
@@ -106,6 +109,14 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
   const need = donationNeeds.find((n) => n.id === id);
   const otherNeeds = donationNeeds.filter((n) => n.id !== id);
 
+  const handleDonationClick = () => {
+    console.log("handleDonationClick");
+
+    alert("We are working on it, please come back later");
+    // open toast saying 'We are working on it, please come back later'
+    toast("We are working on it, please come back later");
+  };
+
   if (!need) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#f4f4f4]">
@@ -200,7 +211,10 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
                       )}
                       % funded
                     </div> */}
-                    <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2">
+                    <Button
+                      onClick={handleDonationClick}
+                      className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2"
+                    >
                       <Target className="h-5 w-5 mr-2" /> Donate Now
                     </Button>
                   </div>
@@ -392,7 +406,10 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
                 {calculateProgress(need.amountRaised, need.amountNeeded)}%
                 funded
               </div> */}
-              <Button className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2">
+              <Button
+                onClick={handleDonationClick}
+                className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2"
+              >
                 <Target className="h-5 w-5 mr-2" /> Donate Now
               </Button>
             </div>
