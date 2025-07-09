@@ -17,8 +17,8 @@ const donationNeeds = [
     need: "School Fees & Supplies",
     story:
       "Nalwanja is a young girl who needs to continue her education. Her family cannot afford the fees and needs community support. She is passionate about learning and dreams of becoming a teacher to help others in her community. Your support will help her stay in school and achieve her dreams.",
-    amountNeeded: 500000, // UGX
-    amountRaised: 150000,
+    amountNeeded: 5000, // UGX
+    amountRaised: 2500,
     image: "/images/don5.jpeg",
     urgency: "High",
     category: "Education",
@@ -32,8 +32,8 @@ const donationNeeds = [
     need: "School Fees",
     story:
       "Nakawunde is a young girl who needs to continue her education. Her family cannot afford the fees and needs community support. She excels in science and hopes to become a doctor to serve her village. Your donation will help her continue her studies and inspire others.",
-    amountNeeded: 2000000, // UGX
-    amountRaised: 450000,
+    amountNeeded: 2000, // UGX
+    amountRaised: 1000,
     image: "/images/don2.jpeg",
     urgency: "Urgent",
     category: "Education",
@@ -47,8 +47,8 @@ const donationNeeds = [
     need: "School Fees",
     story:
       "Benson is a young child who needs to continue her education. Her family cannot afford the fees and needs community support. Benson loves drawing and playing football. Your help will ensure he gets the education and care he deserves.",
-    amountNeeded: 800000, // UGX
-    amountRaised: 200000,
+    amountNeeded: 2000, // UGX
+    amountRaised: 1000,
     image: "/images/don3.jpeg",
     urgency: "High",
     category: "Education",
@@ -60,8 +60,8 @@ const donationNeeds = [
     description: "Watch how your donations are changing lives across Uganda.",
     video: "/images/video1.mp4",
     image: "/images/video-thumb.jpg", // optional thumbnail
-    amountNeeded: 1000000, // UGX
-    amountRaised: 250000,
+    amountNeeded: 8000, // UGX
+    amountRaised: 4000,
   },
   {
     id: 5,
@@ -72,6 +72,8 @@ const donationNeeds = [
     description: "Help us buy a car to support our community.",
     image: "/images/car.jpeg",
     story: "We need to buy a car to support our community.",
+    amountNeeded: 20000, // UGX
+    amountRaised: 0,
   },
   {
     id: 6,
@@ -83,8 +85,8 @@ const donationNeeds = [
     image: "/images/20.jpeg",
     video: "/images/video2.mp4",
     story: "We need to build a house for his family.",
-    amountNeeded: 1000000, // UGX
-    amountRaised: 250000,
+    amountNeeded: 5000, // UGX
+    amountRaised: 2500,
   },
 ];
 
@@ -95,7 +97,7 @@ const calculateProgress = (raised: number, needed: number) => {
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat("en-UG", {
     style: "currency",
-    currency: "UGX",
+    currency: "USD",
     minimumFractionDigits: 0,
   }).format(amount);
 };
@@ -185,15 +187,15 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
               {typeof need.amountNeeded === "number" &&
                 typeof need.amountRaised === "number" && (
                   <div className="mt-2">
-                    {/* <div className="flex justify-between text-xs text-gray-500 mb-1">
+                    <div className="flex justify-between text-xs text-gray-500 mb-1">
                       <span>
                         Raised: {formatCurrency(need.amountRaised ?? 0)}
                       </span>
                       <span>
                         Goal: {formatCurrency(need.amountNeeded ?? 0)}
                       </span>
-                    </div> */}
-                    {/* <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
                       <div
                         className="bg-[#8c3420] h-3 rounded-full transition-all duration-500"
                         style={{
@@ -203,14 +205,14 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
                           )}%`,
                         }}
                       ></div>
-                    </div> */}
-                    {/* <div className="text-xs text-gray-700 font-semibold mb-2">
+                    </div>
+                    <div className="text-xs text-gray-700 font-semibold mb-2">
                       {calculateProgress(
                         need.amountRaised ?? 0,
                         need.amountNeeded ?? 1
                       )}
                       % funded
-                    </div> */}
+                    </div>
                     <Button
                       onClick={handleDonationClick}
                       className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2"
@@ -387,7 +389,7 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
               </p>
             </div>
             <div className="mt-4">
-              {/* <div className="flex justify-between text-xs text-gray-500 mb-1">
+              <div className="flex justify-between text-xs text-gray-500 mb-1">
                 <span>Raised: {formatCurrency(need.amountRaised)}</span>
                 <span>Goal: {formatCurrency(need.amountNeeded)}</span>
               </div>
@@ -405,7 +407,7 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
               <div className="text-xs text-gray-700 font-semibold mb-2">
                 {calculateProgress(need.amountRaised, need.amountNeeded)}%
                 funded
-              </div> */}
+              </div>
               <Button
                 onClick={handleDonationClick}
                 className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2"
