@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Clock, Target } from "lucide-react";
 import { toast } from "sonner";
+import { useState } from "react";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const donationNeeds = [
   {
@@ -111,12 +113,21 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
   const need = donationNeeds.find((n) => n.id === id);
   const otherNeeds = donationNeeds.filter((n) => n.id !== id);
 
-  const handleDonationClick = () => {
-    console.log("handleDonationClick");
+  // State for donation amount and currency
+  const [donationAmount, setDonationAmount] = useState(20);
+  const [currency, setCurrency] = useState<"USD" | "EUR">("USD");
+  const [showDonationForm, setShowDonationForm] = useState(false);
 
-    alert("We are working on it, please come back later");
-    // open toast saying 'We are working on it, please come back later'
-    toast("We are working on it, please come back later");
+  const handleDonationClick = () => {
+    setShowDonationForm(true);
+  };
+
+  const handleDonationSuccess = (details: any) => {
+    console.log("Transaction completed by " + details.payer.name.given_name);
+    toast.success(
+      "Thank you for your donation! Your support makes a difference."
+    );
+    setShowDonationForm(false);
   };
 
   if (!need) {
@@ -408,12 +419,156 @@ export default function DonationNeedDetailPage({ params }: DetailPageProps) {
                 {calculateProgress(need.amountRaised, need.amountNeeded)}%
                 funded
               </div>
-              <Button
-                onClick={handleDonationClick}
-                className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center justify-center text-lg py-6 mt-2"
-              >
-                <Target className="h-5 w-5 mr-2" /> Donate Now
-              </Button>
+              {!showDonationForm ? (
+                <Button
+                  onClick={handleDonationClick}
+                  className="bg-[#8c3420] hover:bg-[#6a2718] text-white w-full flex items-center mb-5 justify-center text-lg py-6 mt-2"
+                >
+                  <Target className="h-5 w-5 mr-2" /> Donate Now
+                </Button>
+              ) : (
+                <div className="bg-white border border-gray-200 rounded-lg p-6 mb-5">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-[#8c3420]">
+                      Make a Donation
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setShowDonationForm(false)}
+                      className="text-gray-500 hover:text-gray-700"
+                    >
+                      ✕
+                    </Button>
+                  </div>
+
+                  {/* Currency Selection */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Select Currency
+                    </label>
+                    <div className="flex gap-2">
+                      <Button
+                        variant={currency === "USD" ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setCurrency("USD")}
+                        className={
+                          currency === "USD"
+                            ? "bg-[#8c3420] hover:bg-[#6a2718]"
+                            : ""
+                        }
+                      >
+                        USD ($)
+                      </Button>
+                      <Button
+                        variant={currency === "EUR" ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setCurrency("EUR")}
+                        className={
+                          currency === "EUR"
+                            ? "bg-[#8c3420] hover:bg-[#6a2718]"
+                            : ""
+                        }
+                      >
+                        EUR (€)
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Amount Selection */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Select Amount ({currency === "USD" ? "$" : "€"})
+                    </label>
+                    <div className="grid grid-cols-3 gap-2 mb-3">
+                      {[20, 50, 100, 200, 500, 1000].map((amount) => (
+                        <Button
+                          key={amount}
+                          variant={
+                            donationAmount === amount ? "default" : "outline"
+                          }
+                          size="sm"
+                          onClick={() => setDonationAmount(amount)}
+                          className={
+                            donationAmount === amount
+                              ? "bg-[#8c3420] hover:bg-[#6a2718]"
+                              : ""
+                          }
+                        >
+                          {currency === "USD" ? "$" : "€"}
+                          {amount}
+                        </Button>
+                      ))}
+                    </div>
+                    <div className="flex gap-2">
+                      <input
+                        type="number"
+                        min="20"
+                        step="1"
+                        value={donationAmount}
+                        onChange={(e) =>
+                          setDonationAmount(Number(e.target.value))
+                        }
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8c3420] focus:border-transparent"
+                        placeholder="Custom amount"
+                      />
+                      <span className="flex items-center px-3 text-gray-500">
+                        {currency === "USD" ? "USD" : "EUR"}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Minimum donation: {currency === "USD" ? "$" : "€"}20
+                    </p>
+                  </div>
+
+                  {/* PayPal Integration */}
+                  <div className="mt-6">
+                    <PayPalScriptProvider
+                      options={{
+                        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+                        currency: currency,
+                      }}
+                    >
+                      <PayPalButtons
+                        style={{ layout: "vertical", shape: "rect" }}
+                        createOrder={(data, actions) => {
+                          if (!actions.order) {
+                            throw new Error(
+                              "PayPal actions.order is not available"
+                            );
+                          }
+                          return actions.order.create({
+                            intent: "CAPTURE",
+                            purchase_units: [
+                              {
+                                amount: {
+                                  value: donationAmount.toString(),
+                                  currency_code: currency,
+                                },
+                                description: `Donation for ${need.name} - ${need.need}`,
+                              },
+                            ],
+                          });
+                        }}
+                        onApprove={(data, actions) => {
+                          if (!actions.order) {
+                            throw new Error(
+                              "PayPal actions.order is not available"
+                            );
+                          }
+                          return actions.order.capture().then((details) => {
+                            handleDonationSuccess(details);
+                          });
+                        }}
+                        onError={(err) => {
+                          console.error("PayPal error:", err);
+                          toast.error("Payment failed. Please try again.");
+                        }}
+                      />
+                    </PayPalScriptProvider>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="mt-8 bg-[#f8f4e3] rounded-lg p-4 shadow-inner">
               <h3 className="text-lg font-bold text-[#8c3420] mb-2">
